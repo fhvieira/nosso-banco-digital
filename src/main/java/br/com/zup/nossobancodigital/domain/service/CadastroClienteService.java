@@ -24,13 +24,19 @@ public class CadastroClienteService {
         }
 
         clienteRepository.findByEmail(cliente.getEmail())
-                .ifPresent(x -> { throw new NegocioException(
-                        String.format("Email %s ja cadastrado para o cliente %s", cliente.getEmail(), x.getNome()));
+                .ifPresent(x -> {
+                        if (x.getId() != cliente.getId()) {
+                            throw new NegocioException(
+                                String.format("Email %s ja cadastrado para o cliente %s", cliente.getEmail(), x.getNome()));
+                        }
                 });
 
         clienteRepository.findByCpf(cliente.getCpf())
-                .ifPresent(x -> { throw new NegocioException(
-                    String.format("Cpf %s ja cadastrado para o cliente %s", cliente.getCpf(), x.getNome()));
+                .ifPresent(x -> {
+                    if (x.getId() != cliente.getId()) {
+                        throw new NegocioException(
+                                String.format("Cpf %s ja cadastrado para o cliente %s", cliente.getCpf(), x.getNome()));
+                    }
                 });
 
         return clienteRepository.save(cliente);

@@ -1,5 +1,6 @@
 package br.com.zup.nossobancodigital.api.exceptionhandler;
 
+import br.com.zup.nossobancodigital.domain.exception.EntidadeNaoEncontradaException;
 import br.com.zup.nossobancodigital.domain.exception.NegocioException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.fasterxml.jackson.databind.exc.PropertyBindingException;
@@ -100,6 +101,21 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 .build();
 
         return handleExceptionInternal(ex, problem, headers, status, request);
+    }
+
+    @ExceptionHandler(EntidadeNaoEncontradaException.class)
+    public ResponseEntity<?> handleEntidadeNaoEncontrado(
+            EntidadeNaoEncontradaException ex, WebRequest request) {
+
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
+        String detail = ex.getMessage();
+
+        Problem problem = createProblemBuilder(status, problemType, detail)
+                .build();
+
+        return handleExceptionInternal(ex, problem, new HttpHeaders(),
+                status.NOT_FOUND, request);
     }
 
     @ExceptionHandler(NegocioException.class)

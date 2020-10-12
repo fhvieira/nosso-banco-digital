@@ -16,7 +16,7 @@ public class ClienteInputDisassembler {
         return modelMapper.map(clienteInput, Cliente.class);
     }
 
-    public void copyToDomainObject(ClienteInput clienteInput, Cliente cozinha) {
-        modelMapper.map(clienteInput, cozinha);
+    public void copyToDomainObject(ClienteInput clienteInput, Cliente cliente) {
+        modelMapper.map(clienteInput, cliente);
     }
 }

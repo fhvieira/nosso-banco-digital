@@ -7,12 +7,13 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class ClienteModel {
+public class PropostaModel {
     private Long id;
     private String nome;
     private String sobrenome;
     private String email;
     private LocalDate dataNascimento;
     private String cpf;
+    private String status;
     private EnderecoModel endereco;
 }

@@ -1,6 +1,6 @@
 package br.com.zup.nossobancodigital.domain.exception;
 
-public class ClienteNaoEncontradoException extends NegocioException {
+public class ClienteNaoEncontradoException extends EntidadeNaoEncontradaException {
 
     public ClienteNaoEncontradoException(String msg) {
         super(msg);

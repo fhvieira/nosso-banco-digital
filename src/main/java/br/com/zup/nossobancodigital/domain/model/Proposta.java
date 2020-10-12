@@ -10,9 +10,9 @@ import java.time.Period;
 @Data
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Cliente {
+public class Proposta {
 
-    public static final int IDADE_MINIMA_CLIENTE = 18;
+    public static final int IDADE_MINIMA_PROPOSTA = 18;
 
     @Id
     @EqualsAndHashCode.Include
@@ -34,10 +34,22 @@ public class Cliente {
     @Column(nullable = false)
     private String cpf;
 
+    @Column(nullable = false)
+    private StatusProposta status = StatusProposta.INCOMPLETA;
+
     @Embedded
     private Endereco endereco;
 
     public int getIdade() {
         return Period.between(dataNascimento, LocalDate.now()).getYears();
+    }
+
+    public boolean
+    podeAceitar() {
+        return this.status == StatusProposta.COMPLETA;
+    }
+
+    public boolean podeRecusar() {
+        return (this.status == StatusProposta.INCOMPLETA || this.status == StatusProposta.COMPLETA);
     }
 }

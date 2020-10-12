@@ -5,7 +5,6 @@ import br.com.zup.nossobancodigital.api.assembler.ClienteInputDisassembler;
 import br.com.zup.nossobancodigital.api.assembler.ClienteModelAssembler;
 import br.com.zup.nossobancodigital.api.model.ClienteModel;
 import br.com.zup.nossobancodigital.api.model.input.ClienteInput;
-import br.com.zup.nossobancodigital.domain.exception.NegocioException;
 import br.com.zup.nossobancodigital.domain.model.Cliente;
 import br.com.zup.nossobancodigital.domain.repository.ClienteRepository;
 import br.com.zup.nossobancodigital.domain.service.CadastroClienteService;
@@ -37,14 +36,14 @@ public class ClienteController {
         return clienteModelAssembler.toCollectionModel(clienteRepository.findAll());
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public ClienteModel buscar(@PathVariable Long id) {
         Cliente cliente = cadastroClienteService.buscarOuFalhar(id);
 
         return clienteModelAssembler.toModel(cliente);
     }
 
-    @PostMapping()
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ClienteModel adicionar(@Valid @RequestBody ClienteInput clienteInput) {
         Cliente cliente = clienteInputDisassembler.toDomainObject(clienteInput);
