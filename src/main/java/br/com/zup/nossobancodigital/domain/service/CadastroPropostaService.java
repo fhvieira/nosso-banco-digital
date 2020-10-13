@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.OffsetDateTime;
 
 @Service
 public class CadastroPropostaService {
@@ -16,33 +17,8 @@ public class CadastroPropostaService {
     @Autowired
     PropostaRepository propostaRepository;
 
-    @Transactional
-    public Proposta aceitar(Proposta proposta) {
-
-        if (!proposta.podeAceitar()) {
-            throw new NegocioException("A proposta nao esta completa");
-        }
-
-        proposta.setStatus(StatusProposta.ACEITA);
-
-        proposta = salvar(proposta);
-
-        return proposta;
-    }
-
-    @Transactional
-    public Proposta recusar(Proposta proposta) {
-
-        if (!proposta.podeRecusar()) {
-            throw new NegocioException("A proposta nao pode ser recusada");
-        }
-
-        proposta.setStatus(StatusProposta.RECUSADA);
-
-        proposta = salvar(proposta);
-
-        return proposta;
-    }
+    @Autowired
+    CadastroPropostaService cadastroPropostaService;
 
     @Transactional
     public Proposta salvar(Proposta proposta) {

@@ -46,8 +46,7 @@ public class PropostaController {
     }
 
     @PutMapping("/{propostaId}")
-    public PropostaModel atualizar(@PathVariable Long propostaId,
-              @RequestBody @Valid PropostaInput propostaInput) {
+    public PropostaModel atualizar(@PathVariable Long propostaId, @RequestBody @Valid PropostaInput propostaInput) {
         try {
             Proposta proposta = cadastroPropostaService.buscarOuFalhar(propostaId);
 
@@ -70,34 +69,6 @@ public class PropostaController {
         Proposta proposta = propostaInputDisassembler.toDomainObject(propostaInput);
 
         proposta = cadastroPropostaService.salvar(proposta);
-
-        PropostaModel propostaModel = propostaModelAssembler.toModel(proposta);
-
-        ResourceUriHelper.addUriInResponseHeader(propostaModel.getId());
-
-        return propostaModel;
-    }
-
-    @PostMapping("/{propostaId}/aceite")
-    @ResponseStatus(HttpStatus.CREATED)
-    public PropostaModel aceitar(@PathVariable Long propostaId) {
-        Proposta proposta = cadastroPropostaService.buscarOuFalhar(propostaId);
-
-        proposta = cadastroPropostaService.aceitar(proposta);
-
-        PropostaModel propostaModel = propostaModelAssembler.toModel(proposta);
-
-        ResourceUriHelper.addUriInResponseHeader(propostaModel.getId());
-
-        return propostaModel;
-    }
-
-    @PutMapping("/{propostaId}/aceite")
-    @ResponseStatus(HttpStatus.CREATED)
-    public PropostaModel recusar(@PathVariable Long propostaId) {
-        Proposta proposta = cadastroPropostaService.buscarOuFalhar(propostaId);
-
-        proposta = cadastroPropostaService.recusar(proposta);
 
         PropostaModel propostaModel = propostaModelAssembler.toModel(proposta);
 

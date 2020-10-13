@@ -1,7 +1,10 @@
 package br.com.zup.nossobancodigital.domain.model;
 
+import br.com.zup.nossobancodigital.domain.event.PropostaConfirmadaEvent;
+import br.com.zup.nossobancodigital.domain.exception.NegocioException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -9,8 +12,8 @@ import java.time.Period;
 
 @Data
 @Entity
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Proposta {
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+public class Proposta  extends AbstractAggregateRoot {
 
     public static final int IDADE_MINIMA_PROPOSTA = 18;
 
@@ -40,12 +43,25 @@ public class Proposta {
     @Embedded
     private Endereco endereco;
 
+    public void confirmar() {
+        if (!this.podeConfirmar()) {
+            throw new NegocioException("A proposta nao esta completa");
+        }
+
+        setStatus(StatusProposta.CONFIRMADA);
+
+        registerEvent(new PropostaConfirmadaEvent(this));
+    }
+
+    public void cancelar() {
+
+    }
+
     public int getIdade() {
         return Period.between(dataNascimento, LocalDate.now()).getYears();
     }
 
-    public boolean
-    podeAceitar() {
+    public boolean podeConfirmar() {
         return this.status == StatusProposta.COMPLETA;
     }
 

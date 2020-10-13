@@ -3,10 +3,10 @@ package br.com.zup.nossobancodigital.domain.model;
 public enum StatusProposta {
     INCOMPLETA( "Incompleta" ),
     COMPLETA ( "Completa" ),
-    ACEITA( "Aceita" ),
-    RECUSADA ("Recusada" ),
-    APROVADA( "Aprovada" ),
-    NEGADA( "Negada" );
+    CONFIRMADA ( "Confirmada" ),
+    CANCELADA (  "Cancelada" ),
+    APROVADA ( "Aprovada" ),
+    RECUSADA ("Recusada" );
 
     private String descricao;
 
