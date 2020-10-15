@@ -57,7 +57,6 @@ public class Proposta  extends AbstractAggregateRoot {
     }
 
     public void cancelar() {
-
     }
 
     public int getIdade() {

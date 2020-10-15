@@ -1,7 +1,10 @@
 package br.com.zup.nossobancodigital.domain.model;
 
+import br.com.zup.nossobancodigital.domain.event.ContaConfirmadaEvent;
+import br.com.zup.nossobancodigital.domain.exception.NegocioException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +17,7 @@ import java.util.Random;
 @Data
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Conta {
+public class Conta extends AbstractAggregateRoot {
 
     public Conta() {
         Random r = new Random();
@@ -28,6 +31,8 @@ public class Conta {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private StatusConta status = StatusConta.AGUARDANDO_CONFIRMACAO;
 
     @NotNull
     private String agencia;
@@ -43,4 +48,22 @@ public class Conta {
 
 //    @NotNull
 //    private Proposta propostaOrigem;
+
+    public void confirmar() {
+        if (!this.podeConfirmar()) {
+            throw new NegocioException("A proposta nao esta completa");
+        }
+
+        setStatus(StatusConta.APROVADA);
+
+        registerEvent(new ContaConfirmadaEvent(this));
+    }
+
+    public void cancelar() {
+
+    }
+
+    public boolean podeConfirmar() {
+        return  false;
+    }
 }
