@@ -43,6 +43,9 @@ public class Proposta  extends AbstractAggregateRoot {
     @Embedded
     private Endereco endereco;
 
+    @Embedded
+    private Foto foto;
+
     public void confirmar() {
         if (!this.podeConfirmar()) {
             throw new NegocioException("A proposta nao esta completa");

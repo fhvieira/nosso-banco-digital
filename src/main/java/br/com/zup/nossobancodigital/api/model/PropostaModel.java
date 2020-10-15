@@ -1,5 +1,6 @@
 package br.com.zup.nossobancodigital.api.model;
 
+import br.com.zup.nossobancodigital.domain.model.Foto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,4 +17,5 @@ public class PropostaModel {
     private String cpf;
     private String status;
     private EnderecoModel endereco;
+    private Foto foto;
 }

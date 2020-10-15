@@ -1,7 +1,6 @@
 package br.com.zup.nossobancodigital.domain.service;
 
 import br.com.zup.nossobancodigital.domain.exception.PropostaFotoNaoEncontradaException;
-import br.com.zup.nossobancodigital.domain.model.PropostaFoto;
 import br.com.zup.nossobancodigital.domain.repository.PropostaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +18,8 @@ public class PropostaFotoService {
     @Autowired
     private FotoStorageService fotoStorageService;
 
-    @Transactional
-    public PropostaFoto salvar(PropostaFoto foto, InputStream dadosArquivo) {
+//    @Transactional
+//    public PropostaFoto salvar(PropostaFoto foto, InputStream dadosArquivo) {
 //        var propostaId = foto.getProposta().getId();
 //        var nomeArquivo = fotoStorageService.gerarNomeArquivo(foto.getNomeArquivo());
 //
@@ -35,7 +34,7 @@ public class PropostaFotoService {
 //
 //        foto.setNomeArquivo(nomeArquivo);
 
-        foto = propostaRepository.save(foto);
+//        foto = propostaRepository.save(foto);
 
 //        propostaRepository.flush();
 //
@@ -50,8 +49,8 @@ public class PropostaFotoService {
 //
 //        fotoStorageService.substituir(novaFoto, nomeArquivoExistente);
 
-        return foto;
-    }
+//        return foto;
+//    }
 
 //    public PropostaFoto buscarOuFalhar(Long propostaId) {
 //        return propostaRepository.findFotoById(propostaId)
