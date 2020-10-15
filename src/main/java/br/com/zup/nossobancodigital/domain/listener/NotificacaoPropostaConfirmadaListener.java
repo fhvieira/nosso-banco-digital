@@ -33,7 +33,7 @@ public class NotificacaoPropostaConfirmadaListener {
         envioEmailService.enviar(mensagem);
 
         Conta novaConta = new Conta();
-        novaConta.setPropostaOrigem(proposta);
+//        novaConta.setPropostaOrigem(proposta);
         cadastroContaService.salvar(novaConta);
     }
 }

@@ -1,4 +1,4 @@
-package br.com.zup.nossobancodigital.infrasctructure.service.email;
+package br.com.zup.nossobancodigital.infrastructure.service.email;
 
 import br.com.zup.nossobancodigital.core.email.EmailProperties;
 import br.com.zup.nossobancodigital.domain.service.EnvioEmailService;

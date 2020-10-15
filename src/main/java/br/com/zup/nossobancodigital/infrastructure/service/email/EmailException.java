@@ -1,4 +1,4 @@
-package br.com.zup.nossobancodigital.infrasctructure.service.email;
+package br.com.zup.nossobancodigital.infrastructure.service.email;
 
 public class EmailException extends RuntimeException {
     private final static Long serialVersionUID = 1L;

@@ -1,4 +1,4 @@
-package br.com.zup.nossobancodigital.infrasctructure.service.email;
+package br.com.zup.nossobancodigital.infrastructure.service.email;
 
 import lombok.extern.slf4j.Slf4j;
 

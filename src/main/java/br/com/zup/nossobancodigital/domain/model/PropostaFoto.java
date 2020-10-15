@@ -8,11 +8,11 @@ import javax.persistence.*;
 @Data
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class FotoDocumento {
+public class PropostaFoto {
 
-    @EqualsAndHashCode.Include
     @Id
-    @Column(name = "produto_id")
+    @EqualsAndHashCode.Include
+    @Column(name = "proposta_id")
     private Long id;
 
     private String nomeArquivo;
@@ -22,5 +22,5 @@ public class FotoDocumento {
 
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
-    private Produto produto;
+    private Proposta proposta;
 }

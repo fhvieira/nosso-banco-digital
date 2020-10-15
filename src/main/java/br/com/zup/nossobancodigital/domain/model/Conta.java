@@ -41,6 +41,6 @@ public class Conta {
     @NotNull
     private BigDecimal Saldo = BigDecimal.valueOf(0);
 
-    @NotNull
-    private Proposta propostaOrigem;
+//    @NotNull
+//    private Proposta propostaOrigem;
 }

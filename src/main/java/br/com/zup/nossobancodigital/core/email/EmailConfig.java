@@ -1,9 +1,9 @@
 package br.com.zup.nossobancodigital.core.email;
 
 import br.com.zup.nossobancodigital.domain.service.EnvioEmailService;
-import br.com.zup.nossobancodigital.infrasctructure.service.email.FakeEnvioEmailService;
-import br.com.zup.nossobancodigital.infrasctructure.service.email.SandboxEnvioEmailService;
-import br.com.zup.nossobancodigital.infrasctructure.service.email.SmtpEnvioEmailService;
+import br.com.zup.nossobancodigital.infrastructure.service.email.FakeEnvioEmailService;
+import br.com.zup.nossobancodigital.infrastructure.service.email.SandboxEnvioEmailService;
+import br.com.zup.nossobancodigital.infrastructure.service.email.SmtpEnvioEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
